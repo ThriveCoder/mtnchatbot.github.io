@@ -15,7 +15,7 @@ body {
     height: auto;
 }
 /* @media only screen and (min-width: 300px) and (max-width: 960px) { */
-  header {
+  header, .desktop-user {
     display: flex;
     justify-content: space-between;
     padding: 15px;
@@ -25,7 +25,9 @@ body {
     position: sticky;
     top: 0;
   }
-
+  .desktop-user {
+    display: none;
+  }
   header #openMenu i {
     color: #FEB822;
     font-weight: 800;
@@ -73,13 +75,14 @@ body {
     opacity: 0.9;
     z-index: 1;
     margin-top: 5px;
-    padding: 10px;
+    /* padding: 10px; */
     transition: ease-in-out 1.3s;
     overflow-y: auto;
   }
 
   .chat-container {
     height: 80vh;
+    padding: 10px;
   }
 
   .bot-conv-container,
@@ -380,6 +383,7 @@ body {
   }
   header, section {
     width: 100%;
+    height: 100%;
   }
   div#openMenu, .fa-times {
     display: none;
@@ -387,6 +391,7 @@ body {
   .mainMenu {
     display: block;
     width: 50%;
+    margin-top: 51px;
   }
   div.menu {
     display: flex;
@@ -406,17 +411,16 @@ body {
   .slideshow-container {
     max-width: 1000px;
     position: relative;
-    margin-top: -70%;
+    margin-top: -40%;
     display: block;
-    background: black;
+    background: rgb(46, 45, 45);
   }
 
   /* Hide the images by default */
   .mySlides {
     display: none;
-    justify-content: center;
-    align-items: center;
-    padding: 50px 20px;
+    padding: 20px 220px;
+
   }
 
   /* Next & previous buttons */
@@ -495,5 +499,11 @@ body {
   }
   input {
     width: 600px;
+  }
+  .desktop-user {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
   }
 }
