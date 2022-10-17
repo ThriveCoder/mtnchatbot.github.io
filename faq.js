@@ -59,7 +59,10 @@ const sendMsg = document
         <small id="time">✓✓</small>
       </div>`;
       }, 1500);
-    } else if (msgArr && msgArr.includes("SME") && msgArr.includes("data")) {
+    } else if (
+      (msgArr && msgArr.includes("SME")) ||
+      (msgArr.includes("sme") && msgArr.includes("data"))
+    ) {
       setTimeout(function () {
         allMsgCont.innerHTML += `<div class="bot-first-question">
         <span class="bot-conv-container">
@@ -126,7 +129,10 @@ const sendMsg = document
             <small id="time">✓✓</small>
           </div>`;
       }, 1500);
-    } else if (msgArr && msgArr.includes("2G" && "4G")) {
+    } else if (
+      (msgArr && msgArr.includes("2G" && "4G")) ||
+      msgArr.includes("2g" && "4g")
+    ) {
       setTimeout(function () {
         allMsgCont.innerHTML += `<div class="bot-first-question">
             <span class="bot-conv-container">
@@ -201,6 +207,7 @@ const sendMsg = document
       }, 1500);
     } else if (
       (msgArr && msgArr.includes("issue")) ||
+      msgArr.includes("issues") ||
       msgArr.includes("internet")
     ) {
       setTimeout(function () {
@@ -217,7 +224,10 @@ const sendMsg = document
                 <small id="time">✓✓</small>
               </div>`;
       }, 1500);
-    } else if (msgArr && msgArr.includes("vendor") && msgArr.includes("site")) {
+    } else if (
+      (msgArr && msgArr.includes("vendor")) ||
+      (msgArr.includes("vendor's") && msgArr.includes("site"))
+    ) {
       setTimeout(function () {
         allMsgCont.innerHTML += `<div class="bot-first-question">
                 <span class="bot-conv-container">
@@ -248,7 +258,12 @@ const sendMsg = document
                 <small id="time">✓✓</small>
               </div>`;
       }, 1500);
-    } else if ((msgArr && msgArr.includes("Hi")) || msgArr.includes("Hello")) {
+    } else if (
+      (msgArr && msgArr.includes("Hi")) ||
+      msgArr.includes("Hello") ||
+      msgArr.includes("hi") ||
+      msgArr.includes("hello")
+    ) {
       setTimeout(function () {
         allMsgCont.innerHTML += `<div class="bot-first-question">
                 <span class="bot-conv-container">
@@ -338,35 +353,54 @@ function removeLikes() {
   like.classList.remove("nodisp");
 }
 
-let slideIndex = 1;
-showSlides(slideIndex);
+var responsiveSlider = function () {
+  var slider = document.getElementById("slider");
+  var sliderWidth = slider.offsetWidth;
+  var slideList = document.getElementById("slideWrap");
+  var count = 1;
+  var items = slideList.querySelectorAll("li").length;
+  var prev = document.getElementById("prev");
+  var next = document.getElementById("next");
 
-// Next/previous controls
-function plusSlides(n) {
-  showSlides((slideIndex += n));
-}
+  window.addEventListener("resize", function () {
+    sliderWidth = slider.offsetWidth;
+  });
 
-// Thumbnail image controls
-function currentSlide(n) {
-  showSlides((slideIndex = n));
-}
+  var prevSlide = function () {
+    if (count > 1) {
+      count = count - 2;
+      slideList.style.left = "-" + count * sliderWidth + "px";
+      count++;
+    } else if ((count = 1)) {
+      count = items - 1;
+      slideList.style.left = "-" + count * sliderWidth + "px";
+      count++;
+    }
+  };
 
-function showSlides(n) {
-  let i;
-  let slides = document.getElementsByClassName("mySlides");
-  let dots = document.getElementsByClassName("dot");
-  if (n > slides.length) {
-    slideIndex = 1;
-  }
-  if (n < 1) {
-    slideIndex = slides.length;
-  }
-  for (i = 0; i < slides.length; i++) {
-    slides[i].style.display = "none";
-  }
-  for (i = 0; i < dots.length; i++) {
-    dots[i].className = dots[i].className.replace(" active", "");
-  }
-  slides[slideIndex - 1].style.display = "block";
-  dots[slideIndex - 1].className += " active";
-}
+  var nextSlide = function () {
+    if (count < items) {
+      slideList.style.left = "-" + count * sliderWidth + "px";
+      count++;
+    } else if ((count = items)) {
+      slideList.style.left = "0px";
+      count = 1;
+    }
+  };
+
+  next.addEventListener("click", function () {
+    nextSlide();
+  });
+
+  prev.addEventListener("click", function () {
+    prevSlide();
+  });
+
+  setInterval(function () {
+    nextSlide();
+  }, 5000);
+};
+
+window.onload = function () {
+  responsiveSlider();
+};
