@@ -16,6 +16,9 @@ body, html {
 body {
     height: auto;
 }
+#slider {
+  display: none;
+}
 header, #header {
   display: flex;
   justify-content: space-between;

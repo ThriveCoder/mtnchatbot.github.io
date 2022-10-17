@@ -336,7 +336,7 @@ openMenu.addEventListener("click", () => {
 });
 
 closeMenu.addEventListener("click", () => {
-  mainMenu.style.top = "-100%";
+  mainMenu.style.top = "-150%";
 });
 
 function removeLikes() {
